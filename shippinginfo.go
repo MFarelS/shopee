@@ -40,12 +40,13 @@ func (c Client) FetchShippingInfo(addr AddressInfo, item Item) ([]LogisticChanne
 	return out, nil
 }
 
-func (c LogisticChannelInfo) ChannelID() int64 { return c.json.Get("channel_id").ToInt64() }
-func (c LogisticChannelInfo) Name() string     { return c.json.Get("name").ToString() }
-func (c LogisticChannelInfo) HasWarning() bool { return c.json.Get("warning").GetInterface() != nil }
-func (c LogisticChannelInfo) Warning() string  { return c.json.Get("warning", "warning_msg").ToString() }
-func (c LogisticChannelInfo) MinPrice() int64  { return c.json.Get("min_price").ToInt64() }
-func (c LogisticChannelInfo) MaxPrice() int64  { return c.json.Get("max_price").ToInt64() }
+func (c LogisticChannelInfo) Init(json jsoniter.Any) LogisticChannelInfo { c.json = json; return c }
+func (c LogisticChannelInfo) ChannelID() int64                           { return c.json.Get("channel_id").ToInt64() }
+func (c LogisticChannelInfo) Name() string                               { return c.json.Get("name").ToString() }
+func (c LogisticChannelInfo) HasWarning() bool                           { return c.json.Get("warning").GetInterface() != nil }
+func (c LogisticChannelInfo) Warning() string                            { return c.json.Get("warning", "warning_msg").ToString() }
+func (c LogisticChannelInfo) MinPrice() int64                            { return c.json.Get("min_price").ToInt64() }
+func (c LogisticChannelInfo) MaxPrice() int64                            { return c.json.Get("max_price").ToInt64() }
 
 func (c LogisticChannelInfo) PriceBeforeDiscount() int64 {
 	return c.json.Get("price_before_discount").ToInt64()

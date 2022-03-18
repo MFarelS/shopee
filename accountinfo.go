@@ -26,9 +26,10 @@ func (c Client) FetchAccountInfo() (AccountInfo, error) {
 	return AccountInfo{json.Get("data")}, nil
 }
 
-func (a AccountInfo) ShopID() int64    { return a.json.Get("shopid").ToInt64() }
-func (a AccountInfo) Username() string { return a.json.Get("username").ToString() }
-func (a AccountInfo) UserID() int64    { return a.json.Get("userid").ToInt64() }
+func (a AccountInfo) Init(json jsoniter.Any) AccountInfo { a.json = json; return a }
+func (a AccountInfo) ShopID() int64                      { return a.json.Get("shopid").ToInt64() }
+func (a AccountInfo) Username() string                   { return a.json.Get("username").ToString() }
+func (a AccountInfo) UserID() int64                      { return a.json.Get("userid").ToInt64() }
 
 type AddressInfo struct {
 	json           jsoniter.Any
@@ -76,3 +77,9 @@ func (a AddressInfo) Zipcode() string         { return a.json.Get("zipcode").ToS
 func (a AddressInfo) GeoString() string       { return a.json.Get("geoString").ToString() }
 func (a AddressInfo) ID() int64               { return a.json.Get("id").ToInt64() }
 func (a AddressInfo) IsDeliveryAddress() bool { return a.isDeliveryAddr }
+
+func (a AddressInfo) Init(json jsoniter.Any, isDeliveryAddr bool) AddressInfo {
+	a.json = json
+	a.isDeliveryAddr = isDeliveryAddr
+	return a
+}

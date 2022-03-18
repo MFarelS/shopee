@@ -65,15 +65,16 @@ func (c Client) FetchItemFromURL(urlstr string) (Item, error) {
 	return c.FetchItem(shopid, itemid)
 }
 
-func (i Item) ShopID() int64          { return i.json.Get("shopid").ToInt64() }
-func (i Item) ItemID() int64          { return i.json.Get("itemid").ToInt64() }
-func (i Item) PriceMin() int64        { return i.json.Get("price_min").ToInt64() }
-func (i Item) PriceMax() int64        { return i.json.Get("price_max").ToInt64() }
-func (i Item) Price() int64           { return i.json.Get("price").ToInt64() }
-func (i Item) Stock() int             { return i.json.Get("stock").ToInt() }
-func (i Item) Name() string           { return i.json.Get("name").ToString() }
-func (i Item) IsFlashSale() bool      { return i.json.Get("flash_sale").GetInterface() != nil }
-func (i Item) HasUpcomingFsale() bool { return i.json.Get("upcoming_flash_sale").GetInterface() != nil }
+func (i Item) Init(json jsoniter.Any) Item { i.json = json; return i }
+func (i Item) ShopID() int64               { return i.json.Get("shopid").ToInt64() }
+func (i Item) ItemID() int64               { return i.json.Get("itemid").ToInt64() }
+func (i Item) PriceMin() int64             { return i.json.Get("price_min").ToInt64() }
+func (i Item) PriceMax() int64             { return i.json.Get("price_max").ToInt64() }
+func (i Item) Price() int64                { return i.json.Get("price").ToInt64() }
+func (i Item) Stock() int                  { return i.json.Get("stock").ToInt() }
+func (i Item) Name() string                { return i.json.Get("name").ToString() }
+func (i Item) IsFlashSale() bool           { return i.json.Get("flash_sale").GetInterface() != nil }
+func (i Item) HasUpcomingFsale() bool      { return i.json.Get("upcoming_flash_sale").GetInterface() != nil }
 
 func (i Item) UpcomingFsaleStartTime() int64 {
 	return i.json.Get("upcoming_flash_sale", "start_time").ToInt64()
@@ -116,7 +117,8 @@ func (i Item) TierVariations() []TierVar {
 	return out
 }
 
-func (t TierVar) Name() string { return t.json.Get("name").ToString() }
+func (t TierVar) Init(json jsoniter.Any) TierVar { t.json = json; return t }
+func (t TierVar) Name() string                   { return t.json.Get("name").ToString() }
 
 func (t TierVar) Options() []string {
 	if t.optsCache != nil {
@@ -148,11 +150,12 @@ func (i *Item) Models() []Model {
 	return out
 }
 
-func (m Model) ItemID() int64  { return m.json.Get("itemid").ToInt64() }
-func (m Model) Name() string   { return m.json.Get("name").ToString() }
-func (m Model) Stock() int     { return m.json.Get("stock").ToInt() }
-func (m Model) ModelID() int64 { return m.json.Get("modelid").ToInt64() }
-func (m Model) Price() int64   { return m.json.Get("price").ToInt64() }
+func (m Model) Init(json jsoniter.Any) Model { m.json = json; return m }
+func (m Model) ItemID() int64                { return m.json.Get("itemid").ToInt64() }
+func (m Model) Name() string                 { return m.json.Get("name").ToString() }
+func (m Model) Stock() int                   { return m.json.Get("stock").ToInt() }
+func (m Model) ModelID() int64               { return m.json.Get("modelid").ToInt64() }
+func (m Model) Price() int64                 { return m.json.Get("price").ToInt64() }
 
 type CheckoutableItem struct {
 	Item
