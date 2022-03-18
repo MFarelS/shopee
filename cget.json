@@ -1,0 +1,85 @@
+{
+    "timestamp": 0,
+    "shoporders": [
+        {
+            "shop": {
+                "shopid": 0
+            },
+            "items": [
+                {
+                    "itemid": 0,
+                    "modelid": 0,
+                    "quantity": 1,
+                    "add_on_deal_id": 0,
+                    "is_add_on_sub_item": false,
+                    "item_group_id": null,
+                    "insurances": []
+                }
+            ],
+            "shipping_id": 1
+        }
+    ],
+    "selected_payment_channel_data": {},
+    "promotion_data": {
+        "use_coins": false,
+        "free_shipping_voucher_info": {
+            "free_shipping_voucher_id": 0,
+            "free_shipping_voucher_code": "",
+            "disabled_reason": null,
+            "banner_info": {
+                "msg": "",
+                "learn_more_msg": ""
+            }
+        },
+        "platform_vouchers": [],
+        "shop_vouchers": [],
+        "check_shop_voucher_entrances": true,
+        "auto_apply_shop_voucher": false
+    },
+    "fsv_selection_infos": [],
+    "device_info": {
+        "device_id": "",
+        "device_fingerprint": "",
+        "tongdun_blackbox": "",
+        "buyer_payment_info": {}
+    },
+    "buyer_info": {
+        "share_to_friends_info": {
+            "display_toggle": false,
+            "enable_toggle": false,
+            "allow_to_share": false
+        },
+        "kyc_info": null,
+        "checkout_email": ""
+    },
+    "cart_type": 1,
+    "client_id": 8,
+    "tax_info": {
+        "tax_id": ""
+    },
+    "_cft": [
+        383
+    ],
+    "dropshipping_info": {
+        "enabled": false,
+        "name": "",
+        "phone_number": ""
+    },
+    "shipping_orders": [
+        {
+            "sync": true,
+            "buyer_address_data": {
+                "addressid": 0,
+                "address_type": 0,
+                "tax_address": ""
+            },
+            "selected_logistic_channelid": 0,
+            "shipping_id": 1,
+            "shoporder_indexes": [
+                0
+            ],
+            "selected_preferred_delivery_time_slot_id": null
+        }
+    ],
+    "order_update_info": {}
+}
